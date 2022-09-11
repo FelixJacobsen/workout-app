@@ -1,0 +1,14 @@
+<template>  
+    <NavHeader title="Testie" />
+</template>
+
+<script>
+import NavHeader from "./components/NavHeader.vue";
+
+export default {
+    name: "App",
+    components: {
+        NavHeader,
+    },
+};
+</script>
