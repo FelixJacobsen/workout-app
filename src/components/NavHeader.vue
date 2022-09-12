@@ -1,49 +1,19 @@
 <template>
-        <header>
-            <img class="nav-logo" src="../assets/img/logo.png" alt="logo"> 
-        <div class="nav-container">
-                <uL class="nav-list">
-                    <router-link class="nav-item">Home</router-link>
-                    <router-link class="nav-item">Workouts</router-link>
-                    <router-link class="nav-item">About</router-link>
-                </uL>
-        </div>
-    </header>
+<header class="bg-light-green text-white">
+        <nav class="container py-5 px-4 flex flex-col gap-4 items-center sm:flex-row">
+                <div class="flex-items-center gap-x-4">
+                    <img class="w-14" src="../assets/img/logo.png" alt="logo"> 
+                    <h1 class="text-lg">workout-app</h1>
+                </div>
+            <ul class="flex flex-1 justify-end gap-x-10">
+                <router-link class="cursor-pointer" :to="{ name: 'Home' }">Home</router-link>
+                <router-link class="cursor-pointer" :to="{ name: 'Create' }">Create</router-link>
+                <router-link class="cursor-pointer" :to="{ name: 'Login' }">About</router-link>
+            </ul>
+        </nav>
+    </header> 
 </template>
-
-
-<script>
-export default {
-    name: "NavHeader",
-}
+<script setup>
+    
 </script>
-
-<style scoped>
-
-
-.nav-container{
-    padding: 5px;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: space-between;
-    background: green;
-}
-
-
-
-.nav-logo{
-    position: absolute;
-    width: 10rem;
-    height: 10rem;
-}
-
-.nav-list{
-}
-
-.nav-item{
-
-}
-
-</style>
 
