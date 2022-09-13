@@ -1,14 +1,9 @@
-<template>  
-    <NavHeader title="Testie" />
+<template>
+  <NavHeader title="Testie" />
+  <RouterView />
 </template>
 
-<script>
+<script setup>
 import NavHeader from "./components/NavHeader.vue";
-
-export default {
-    name: "App",
-    components: {
-        NavHeader,
-    },
-};
+import { RouterLink, RouterView } from "vue-router";
 </script>
