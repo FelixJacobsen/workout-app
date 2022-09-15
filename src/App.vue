@@ -1,8 +1,8 @@
 <template>
   <div class="min-h-full font-Poppins box-border">
-    <NavHeader/>
-  <NavFooter/>
-  <RouterView />
+    <NavHeader />
+    <RouterView />
+    <NavFooter />
   </div>
 </template>
 
@@ -10,4 +10,6 @@
 import NavHeader from "./components/NavHeader.vue";
 import { RouterLink, RouterView } from "vue-router";
 import NavFooter from "./components/NavFooter.vue";
+
+// Lägga in workouts list?
 </script>
