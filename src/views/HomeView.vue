@@ -1,12 +1,5 @@
 <template>
   <div class="max-w-screen-md mx-auto px-4 py-10">
-    <div
-      v-if="message"
-      class="mb-10 p-4 bg-light-grey rounded-md border-2 border-red-700"
-    >
-      <p class="text-red-700">{{ message }}</p>
-    </div>
-
     <div class="p-8 flex items-start bg-light-grey rounded-md shadow-lg">
       <WorkoutForm @addWorkout="addWorkout" />
     </div>

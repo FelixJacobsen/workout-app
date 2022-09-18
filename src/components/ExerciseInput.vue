@@ -1,6 +1,20 @@
 <template>
+   <div
+      v-if="message"
+      class="mb-10 p-4 bg-light-grey rounded-md border-2 border-red-700"
+    >
+      <p class="text-red-700">{{ message }}</p>
+    </div>
+
+     <!-- Workout name -->
+     <div class="flex flex-col">
+     
+      
+    </div>
+
+
+
   <div class="flex flex-col gap-y-5">
-    <button @click.prevent="addExercise">Add exercise</button>
     <div
       class="flex flex-col gap-x-6 gap-y-2 relative md:flex-row"
       v-for="(exercise, index) in exercises"
@@ -96,7 +110,10 @@
         class="h-4 w-auto absolute -left-5 cursor-pointer"
         alt=""
       />
+      
     </div>
+    <button class="mt-6 py-2 px-6 rounded-sm self-start text-sm text-white bg-light-green duration-200 border-solid border-2 border-transparent hover:border-light-green hover:bg-white hover:text-light-green"
+    @click.prevent="addExercise">Add exercise</button>
   </div>
 </template>
 
@@ -107,10 +124,10 @@ import { uid } from "uid";
 //Create data
 const workoutName = ref("");
 const exercises = ref([]);
+const message = ref("");
 
 const props = defineProps({
   type: String,
-  // Lägg till item
 });
 
 const addExercise = () => {
