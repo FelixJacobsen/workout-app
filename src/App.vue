@@ -11,5 +11,4 @@ import NavHeader from "./components/NavHeader.vue";
 import { RouterLink, RouterView } from "vue-router";
 import NavFooter from "./components/NavFooter.vue";
 
-// Lägga in workouts list?
 </script>

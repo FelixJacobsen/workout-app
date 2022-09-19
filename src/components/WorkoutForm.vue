@@ -1,5 +1,5 @@
 <template>
-  <form @submit="createWorkout" class="flex flex-col gap-y-5 w-full">
+  <form @submit="createWorkout"  class="flex flex-col gap-y-5 w-full">
     <!-- Top text -->
     <h1 class="text-2xl text-light-green">Add workout</h1>
 
@@ -19,7 +19,8 @@
 
     <!--Workout type  -->
     <div class="flex flex-col">
-      <label for="workout-type" class="mb-1 text-sm text-at-light-green"
+      <label 
+       class="mb-1 text-sm text-at-light-green"
         >Workout type</label
       >
 
@@ -27,7 +28,7 @@
         id="workout-type"
         class="p-2 text-black focus:outline-none"
         required
-        v-model="workoutType"
+        v-model="type"
         @change="workoutChange"
       >
         <option value="select-workout">Select type of training</option>
@@ -37,14 +38,14 @@
     </div>
 
     <!-- Strength training types -->
-    <div v-if="workoutType === 'strength'" class="flex flex-col gap-y-5"></div>
+    <div v-if="type === 'strength'" class="flex flex-col gap-y-5"></div>
 
-    <ExerciseInput v-if="workoutType === 'strength'" type="strength" />
-    <ExerciseInput v-if="workoutType === 'cardio'" type="cardio" />
+    <ExerciseInput v-if="type === 'strength'" type="strength" />
+    <ExerciseInput v-if="type === 'cardio'" type="cardio" />
 
     <!-- Cardio training types -->
 
-    <div v-if="workoutType === 'cardio'" class="flex flex-col gap-y-4">
+    <div v-if="type === 'cardio'" class="flex flex-col gap-y-4">
       <div
         class="flex flex-col gap-x-6 gap-y-2 relative md:flex-row"
         v-for="(item, index) in exercises"
@@ -67,6 +68,9 @@
     >
       Add Workout
     </button>
+
+    <button @click="$emit('remove')">Remove workout</button>
+   
   </form>
 </template>
 <script setup>
@@ -74,13 +78,18 @@ import { ref } from "vue";
 import { uid } from "uid";
 import ExerciseInput from "./ExerciseInput.vue";
 
+import { useRoute, useRouter } from "vue-router";
+const route = useRoute();
+const currentID = route.params.workoutId;
+
+
 const workoutName = ref("");
-const workoutType = ref("select-workout");
-const exercises = ref([1]);
+const type = ref("select-workout");
+const exercises = ref([]);
 const message = ref("");
 
 const addExercise = () => {
-  if (workoutType === "strength") {
+  if (type === "strength") {
     exercises.value.push({
       id: uid(),
       excerise: "",
@@ -88,6 +97,7 @@ const addExercise = () => {
       reps: "",
       weight: "",
     });
+
   } else {
     exercises.value.push({
       id: uid(),
@@ -116,5 +126,5 @@ const deleteExercise = (id) => {
   }, 5000);
 };
 
-//Define props
+
 </script>

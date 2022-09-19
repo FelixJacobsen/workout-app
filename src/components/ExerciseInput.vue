@@ -150,7 +150,6 @@ const addExercise = () => {
   }
 };
 
-// Change workout form when updated
 const workoutChange = () => {
   exercises.value = [];
   addExercise();
@@ -169,5 +168,4 @@ const deleteExercise = (id) => {
   }, 5000);
 };
 
-//Define props
 </script>
