@@ -1,5 +1,5 @@
 <template>
-  <form @submit="createWorkout"  class="flex flex-col gap-y-5 w-full">
+  <form @submit="createWorkout" class="flex flex-col gap-y-5 w-full">
     <!-- Top text -->
     <h1 class="text-2xl text-light-green">Add workout</h1>
 
@@ -19,10 +19,7 @@
 
     <!--Workout type  -->
     <div class="flex flex-col">
-      <label 
-       class="mb-1 text-sm text-at-light-green"
-        >Workout type</label
-      >
+      <label class="mb-1 text-sm text-at-light-green">Workout type</label>
 
       <select
         id="workout-type"
@@ -68,9 +65,6 @@
     >
       Add Workout
     </button>
-
-    <button @click="$emit('remove')">Remove workout</button>
-   
   </form>
 </template>
 <script setup>
@@ -81,7 +75,6 @@ import ExerciseInput from "./ExerciseInput.vue";
 import { useRoute, useRouter } from "vue-router";
 const route = useRoute();
 const currentID = route.params.workoutId;
-
 
 const workoutName = ref("");
 const type = ref("select-workout");
@@ -97,7 +90,6 @@ const addExercise = () => {
       reps: "",
       weight: "",
     });
-
   } else {
     exercises.value.push({
       id: uid(),
@@ -125,6 +117,4 @@ const deleteExercise = (id) => {
     message.value = false;
   }, 5000);
 };
-
-
 </script>
