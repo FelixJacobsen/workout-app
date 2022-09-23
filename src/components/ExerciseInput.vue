@@ -6,11 +6,7 @@
       <p class="text-red-700">{{ message }}</p>
     </div>
 
-     <!-- Workout name -->
-     <div class="flex flex-col">
      
-      
-    </div>
 
 
 
@@ -22,14 +18,15 @@
     >
       <!-- Strength || Exercise -->
       <div v-if="type === 'strength'" class="flex flex-col md:w-1/3">
-        <label for="exercise-name" class="mb-1 text-sm text-light-green"
+        <label for="exercise-name" class="mb-1 text-sm text-light-green "
           >Exercise</label
         >
 
         <input
           required
           type="text"
-          class="p-2 w-full text-black"
+          placeholder="Enter exercise name"
+          class="p-2 w-full text-black border border-black bg-gray-200"
           v-model="exercise.exercise"
         />
       </div>
@@ -43,10 +40,10 @@
 
         <select
           id="cardio-type"
-          class="p-2 w-full text-black"
+          class="p-2 w-full text-black border border-black bg-gray-200"
           v-model="exercise.cardioType"
         >
-          <option value="#">Select Type</option>
+          <option value="">Select Type</option>
           <option value="run">Runs</option>
           <option value="walk">Walk</option>
           <option value="bicycle">Bicycle</option>
@@ -58,8 +55,9 @@
         <label for="sets" class="mb-1 text-sm text-at-light-green">Sets </label>
         <input
           required
-          type="text"
-          class="p-2 w-full text-black focus:outline-none"
+          type="number"
+          class="p-2 w-full text-black border border-black bg-gray-200"
+          placeholder="Enter sets"
           v-model="exercise.sets"
         />
       </div>
@@ -71,8 +69,9 @@
         </label>
         <input
           required
-          type="text"
-          class="p-2 w-full text-black"
+          type="number"
+          placeholder="Enter distance in km"
+          class="p-2 w-full text-black border border-black bg-gray-200"
           v-model="exercise.distance"
         />
       </div>
@@ -84,8 +83,9 @@
         </label>
         <input
           required
-          type="text"
-          class="p-2 w-full text-black focus:outline-none"
+          type="number"
+          placeholder="Enter weight here"
+          class="p-2 w-full text-black border border-black bg-gray-200"
           v-model="exercise.weight"
         />
       </div>
@@ -98,7 +98,8 @@
         <input
           required
           type="text"
-          class="p-2 w-full text-black"
+          class="p-2 w-full text-black border border-black bg-gray-200"
+          placeholder="Enter duration"
           v-model="exercise.duration"
         />
       </div>
@@ -121,7 +122,6 @@
 import { ref } from "vue";
 import { uid } from "uid";
 
-//Create data
 const workoutName = ref("");
 const exercises = ref([]);
 const message = ref("");

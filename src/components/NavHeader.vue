@@ -13,7 +13,6 @@
       <h1 class="text-4xl text-black font-mono">Workout-App</h1>
       <ul class="flex flex-1 justify-end gap-x-10">
         <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/About">About</RouterLink>
       </ul>
     </nav>
   </header>

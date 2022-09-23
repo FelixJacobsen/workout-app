@@ -12,7 +12,6 @@ import { ref } from "vue";
 import WorkoutForm from "../components/WorkoutForm.vue";
 import WorkoutList from "../components/WorkoutList.vue";
 
-//Create data
 const workoutName = ref("");
 const workoutType = ref("select-workout");
 const exercises = ref([1]);

@@ -1,18 +1,20 @@
 <template>
   <form @submit="createWorkout" class="flex flex-col gap-y-5 w-full">
-    <!-- Top text -->
     <h1 class="text-2xl text-light-green">Add workout</h1>
 
     <!-- Workout name -->
     <div class="flex flex-col">
-      <label for="workout-name" class="mb-1 text-sm text-at-light-green"
-        >Workout name</label
+      <label for="workout-name"
+       class="mb-1 text-sm text-at-light-green"
+        > Workout name</label
       >
+
       <input
         id="workout-name"
         type="text"
         required
-        class="p-2 text-black focus:outline-none"
+        class="p-2 text-black border border-black bg-gray-200"
+        placeholder="Enter workout name"
         v-model="workoutName"
       />
     </div>
@@ -23,7 +25,7 @@
 
       <select
         id="workout-type"
-        class="p-2 text-black focus:outline-none"
+        class="p-2 text-black border border-black bg-gray-200 "
         required
         v-model="type"
         @change="workoutChange"
@@ -36,12 +38,10 @@
 
     <!-- Strength training types -->
     <div v-if="type === 'strength'" class="flex flex-col gap-y-5"></div>
-
     <ExerciseInput v-if="type === 'strength'" type="strength" />
     <ExerciseInput v-if="type === 'cardio'" type="cardio" />
 
     <!-- Cardio training types -->
-
     <div v-if="type === 'cardio'" class="flex flex-col gap-y-4">
       <div
         class="flex flex-col gap-x-6 gap-y-2 relative md:flex-row"
@@ -51,7 +51,6 @@
 
       <!--Button to add excercise -->
     </div>
-
     <button
       @click.prevent="
         $emit('addWorkout', {
@@ -71,11 +70,10 @@
 import { ref } from "vue";
 import { uid } from "uid";
 import ExerciseInput from "./ExerciseInput.vue";
-
 import { useRoute, useRouter } from "vue-router";
+
 const route = useRoute();
 const currentID = route.params.workoutId;
-
 const workoutName = ref("");
 const type = ref("select-workout");
 const exercises = ref([]);
