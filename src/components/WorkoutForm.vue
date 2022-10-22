@@ -29,7 +29,6 @@
         @change="workoutChange"
       >
         <option value="select-workout">Select type of training</option>
-        <option value="strength">Strength training</option>
         <option value="cardio">Cardio</option>
       </select>
     </div>
