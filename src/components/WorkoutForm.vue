@@ -37,8 +37,18 @@
     <!-- Strength training types -->
     <div v-if="type === 'strength'" class="flex flex-col gap-y-5"></div>
 
-    <ExerciseInput v-if="type === 'strength'" type="strength" />
-    <ExerciseInput v-if="type === 'cardio'" type="cardio" />
+    <ExerciseInput
+      @addExerciseToWorkout="$emit('addExerciseToWorkout', exercises)"
+      v-if="type === 'strength'"
+      type="strength"
+    />
+    <ExerciseInput
+      @addExerciseToWorkout="
+        (exercise) => $emit('addExerciseToWorkout', exercise)
+      "
+      v-if="type === 'cardio'"
+      type="cardio"
+    />
 
     <!-- Cardio training types -->
 
@@ -74,47 +84,8 @@ import ExerciseInput from "./ExerciseInput.vue";
 
 import { useRoute, useRouter } from "vue-router";
 const route = useRoute();
-const currentID = route.params.workoutId;
-
 const workoutName = ref("");
 const type = ref("select-workout");
 const exercises = ref([]);
 const message = ref("");
-
-const addExercise = () => {
-  if (type === "strength") {
-    exercises.value.push({
-      id: uid(),
-      excerise: "",
-      sets: "",
-      reps: "",
-      weight: "",
-    });
-  } else {
-    exercises.value.push({
-      id: uid(),
-      cardioType: "",
-      distance: "",
-      duration: "",
-    });
-  }
-};
-
-const workoutChange = () => {
-  exercises.value = [];
-  addExercise();
-};
-
-const deleteExercise = (id) => {
-  if (exercises.value.length > 1) {
-    exercises.value = exercises.value.filter(
-      (exercises) => exercises.id !== id
-    );
-    return;
-  }
-  message.value = "A workout cannot have fewer than one excerise";
-  setTimeout(() => {
-    message.value = false;
-  }, 5000);
-};
 </script>

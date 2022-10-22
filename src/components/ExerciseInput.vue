@@ -1,18 +1,13 @@
 <template>
-   <div
-      v-if="message"
-      class="mb-10 p-4 bg-light-grey rounded-md border-2 border-red-700"
-    >
-      <p class="text-red-700">{{ message }}</p>
-    </div>
+  <div
+    v-if="message"
+    class="mb-10 p-4 bg-light-grey rounded-md border-2 border-red-700"
+  >
+    <p class="text-red-700">{{ message }}</p>
+  </div>
 
-     <!-- Workout name -->
-     <div class="flex flex-col">
-     
-      
-    </div>
-
-
+  <!-- Workout name -->
+  <div class="flex flex-col"></div>
 
   <div class="flex flex-col gap-y-5">
     <div
@@ -30,7 +25,7 @@
           required
           type="text"
           class="p-2 w-full text-black"
-          v-model="exercise.exercise"
+          v-model="exercise.name"
         />
       </div>
 
@@ -60,7 +55,7 @@
           required
           type="text"
           class="p-2 w-full text-black focus:outline-none"
-          v-model="exercise.sets"
+          v-model="sets"
         />
       </div>
 
@@ -86,7 +81,7 @@
           required
           type="text"
           class="p-2 w-full text-black focus:outline-none"
-          v-model="exercise.weight"
+          v-model="weight"
         />
       </div>
 
@@ -110,10 +105,13 @@
         class="h-4 w-auto absolute -left-5 cursor-pointer"
         alt=""
       />
-      
     </div>
-    <button class="mt-6 py-2 px-6 rounded-sm self-start text-sm text-white bg-light-green duration-200 border-solid border-2 border-transparent hover:border-light-green hover:bg-white hover:text-light-green"
-    @click.prevent="addExercise">Add exercise</button>
+    <button
+      class="mt-6 py-2 px-6 rounded-sm self-start text-sm text-white bg-light-green duration-200 border-solid border-2 border-transparent hover:border-light-green hover:bg-white hover:text-light-green"
+      @click.prevent="addExercise"
+    >
+      Add exercise
+    </button>
   </div>
 </template>
 
@@ -122,32 +120,56 @@ import { ref } from "vue";
 import { uid } from "uid";
 
 //Create data
-const workoutName = ref("");
 const exercises = ref([]);
 const message = ref("");
+const name = ref("");
+
+//Strength
+const reps = ref(0);
+const sets = ref(0);
+const weight = ref(0);
+
+//Cardio
+const cardioType = ref("");
+const distance = ref("");
+const duration = ref("");
 
 const props = defineProps({
   type: String,
 });
 
+const emits = defineEmits(["addExerciseToWorkout"]);
+
 const addExercise = () => {
-  if (props.type === "strength") {
-    exercises.value.push({
+  let exercise;
+
+  console.log("Props type:", props.type);
+
+  if (props.type === "cardio") {
+    console.log("Inside:", props.type);
+    exercise = {
       id: uid(),
-      exercise: "",
-      sets: "",
-      reps: "",
-      weight: "",
-    });
-  } else if (props.type === "cardio") {
-    exercises.value.push({
+      name: name.value,
+      cardioType: cardioType.value,
+      distance: distance.value,
+      duration: duration.value,
+      workoutName: "",
+    };
+  } else if (props.type === "strength") {
+    console.log("Inside:", props.type);
+    exercise = {
       id: uid(),
-      exercise: "",
-      cardioType: "",
-      distance: "",
-      duration: "",
-    });
+      name: name.value,
+      sets: sets.value,
+      reps: reps.value,
+      weight: weight.value,
+      workoutName: "",
+    };
   }
+
+  exercises.value.push(exercise);
+  emits("addExerciseToWorkout", exercise);
+  console.log("ExerciseINput log:", exercise);
 };
 
 const workoutChange = () => {
@@ -167,5 +189,4 @@ const deleteExercise = (id) => {
     message.value = false;
   }, 5000);
 };
-
 </script>

@@ -17,9 +17,13 @@
     {{ workout.name }}
   </h1>
 
-  <!-- <h1 class="mt-8 mb-2 text-center text-xl text-light-green">{{workout.exercises}}</h1>
-
-    <h1 class="mt-8 mb-2 text-center text-xl text-light-green" v-for="(exercise, index) in exercises " :key="index">{{workouts.exercises}}</h1> -->
+  <h1 class="mt-8 mb-2 text-center text-xl text-light-green">
+    <ul>
+      <li v-for="exercise in workout.exercises">
+        <p>{{ exercise.duration }}</p>
+      </li>
+    </ul>
+  </h1>
 </template>
 
 <script setup>
